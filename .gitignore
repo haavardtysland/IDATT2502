@@ -1,5 +1,5 @@
 env/
 2/MNIST
 3/data
-5/.ipynb_checkpoints
+.ipynb_checkpoints
 .DS_Store

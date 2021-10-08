@@ -24,9 +24,6 @@ class LongShortTermMemoryModel(nn.Module):
     def loss(self, x, y):  # x shape: (sequence length, batch size, encoding size), y shape: (sequence length, encoding size)
         return nn.functional.cross_entropy(self.logits(x), y.argmax(1))
 
-
-
-
 char_encodings = [
         [1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],  # ' ' 0
         [0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],  # 'h' 1
@@ -110,17 +107,17 @@ for epoch in range(500):
         text = ''
 
 model.reset()
-print("Input: rat")
-for i in range(3):
-    word = "rat"
+print("Input: rt")
+word = "hat"
+for i in range(len(word)):
     index = index_to_char.index(word[i])
     y = model.f(torch.tensor([[char_encodings[index]]]))
 print(index_to_emoji[y.argmax(1)])
 
 model.reset()
-print("Input: cat")
-for i in range(3):
-    word = "hat"
+print("Input: rats")
+word = "cat"
+for i in range(len(word)):
     index = index_to_char.index(word[i])
     y = model.f(torch.tensor([[char_encodings[index]]]))
 print(index_to_emoji[y.argmax(1)])
